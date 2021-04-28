@@ -1,0 +1,5 @@
+name: SMS Works Tools module
+description: JS libraries for SMS testing utils
+package: SMS Works
+type: module
+core: 8.x

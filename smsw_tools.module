@@ -1,0 +1,28 @@
+<?php
+
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Component\Serialization\Json;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use Drupal\Core\Mail\MailManagerInterface;
+// use Drupal\Core\Url;
+use \GuzzleHttp\Exception\RequestException;
+
+/**
+ * Implements hook_help().
+ */
+function smsw_tools_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    case 'help.page.loremipsum':
+      return t('
+        <h2>SMS Works Tools Module.</h2>
+        <h3>About</h3>
+        <p>Lorem ipsum dolor sit amet...</p>
+      ');
+  }
+}
+
+
+?>

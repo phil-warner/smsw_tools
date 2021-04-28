@@ -1,0 +1,13 @@
+tools:
+  version: 1.04
+  css:
+    theme:
+      css/tools-theme.css: {}
+  js:
+    js/knockout-min.js: {}
+    js/tools.js: {}
+    js/pricing.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupalSettings
+    - core/jquery.once
