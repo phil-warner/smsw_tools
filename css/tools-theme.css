@@ -287,3 +287,7 @@ body.user-logged-in button.purchase {
 .cursor-pointer {
   cursor: pointer;
 }
+
+.mt-0 {
+  margin-top: 0px !important
+}

@@ -1,5 +1,5 @@
 tools:
-  version: 1.04
+  version: 1.29
   css:
     theme:
       css/tools-theme.css: {}
@@ -7,6 +7,7 @@ tools:
     js/knockout-min.js: {}
     js/tools.js: {}
     js/pricing.js: {}
+    https://cdn.jsdelivr.net/npm/file-saver@2.0.2/dist/FileSaver.min.js: { type: external, minified: true }
   dependencies:
     - core/jquery
     - core/drupalSettings

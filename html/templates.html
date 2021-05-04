@@ -1,0 +1,22 @@
+<script type="text/html" id="comparison-row">
+  <tr>
+    <td><input type="text" class="form-control" data-bind="textInput: supplierName" placeholder="Supplier Name" /></td>
+    <td><input type="number" class="form-control" data-bind="textInput: volume" placeholder="10000"/></td>
+    <td><input type="number" class="form-control" data-bind="textInput: price" placeholder="2.5" step=".1" pattern="^\d*(\.\d{0,2})?$" /></td>
+    <td>
+      <div class="form-group">
+        <div class="input-group"><input type="number" class="form-control" data-bind="textInput: deliveryRate" placeholder="87" /><span class="input-group-addon">%</span></div>
+      </div>
+    </td>
+    <td>
+      <div class="checkbox">
+        <label class="mt-0">
+          <input type="checkbox" data-bind="checked: deliveredOnly" /> Yes
+        </label>
+      </div>
+    </td>
+    <td><span class="form-control" disabled data-bind="text: monthlyCost"></span></td>
+    <td><span class="form-control" disabled data-bind="text: annualCost"></span></td>
+    <td><button class="btn btn-default" type="button" data-bind="click: $parent.removeComparator.bind($data)"><span class="fa fa-trash"></span></button></td>
+  </tr>
+</script>
