@@ -1,5 +1,5 @@
 tools:
-  version: 1.53
+  version: 1.54
   css:
     theme:
       css/tools-theme.css: {}

@@ -154,7 +154,7 @@
     }
 
     removeComparator(kodata) {
-      smsw.comparison.comparators.remove(kodata);
+      smsw.tools.comparators.remove(kodata);
     }
 
     sortByCost() {
