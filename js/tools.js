@@ -11,11 +11,12 @@
       let self = this;
 
       // calculation variables, with defaults
-      self.deliveryRate = ko.observable(100);
+      self.supplierName = ko.observable(null);
       self.volume = ko.observable(1000);
       self.price = ko.observable(2.9);
-      self.supplierName = ko.observable();
+      self.deliveryRate = ko.observable(100);
       self.deliveredOnly = ko.observable(true);
+      self.trigger = ko.observable();
 
       // computed observables
       self.monthlyCost = ko.pureComputed(() => {
@@ -28,6 +29,22 @@
 
       self.annualCost = ko.pureComputed(() => {
         return (Number.parseFloat(self.monthlyCost()) * 12).toFixed(2);
+      });
+
+      self.controlClass = ko.pureComputed(() => {
+        // use the dummy trigger so that this will update when we call the subscribers
+        const trigger = self.trigger();
+        // if this is the cheapest comparator we need to highlight it
+        const cheapest = smsw.tools.comparators().reduce((prev, curr) => {
+          return prev.monthlyCost() < curr.monthlyCost() ? prev : curr;
+        });
+        return cheapest.monthlyCost() === self.monthlyCost() ? 'form-control form-control-success' : 'form-control';
+      });
+
+      self.annualCost.subscribe(() => {
+        ko.utils.arrayForEach(smsw.tools.comparators(), function(comparator) {
+          comparator.trigger.notifySubscribers();
+        });
       });
     }
 
@@ -187,17 +204,23 @@
       const koJSON = JSON.parse(ko.toJSON(this.comparators()));
       const keys = Object.keys(koJSON[0]);
 
+      // remove the controlClass key
+      keys.pop();
+
+      const keyText = [ 'Supplier Name', 'Monthly Message Volume', 'Price Per Text', 'Delivery Rate %', 'Pay for Non-Delivered', 'Monthly Cost (GBP ex. VAT)', 'Annual Cost (GBP ex. VAT)' ];
+
       // get data for each row
       let data = '';
       koJSON.forEach((item) => {
         let values = [];
         keys.forEach((key) => {
-          values.push(item[key]);
+          const value = item[key] ? item[key] : 'not supplied';
+          values.push(value);
         });
         data += values.join(',')+"\r\n";
       });
 
-      let result = keys.join(",")+"\r\n"+data;
+      let result = keyText.join(",")+"\r\n"+data;
       let fileToSave = new Blob([result], {
         type: "csv",
         name: 'price-comparison.csv'

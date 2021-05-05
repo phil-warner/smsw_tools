@@ -291,3 +291,11 @@ body.user-logged-in button.purchase {
 .mt-0 {
   margin-top: 0px !important
 }
+
+.form-control.form-control-success {
+  background-color: yellowgreen !important;
+  border: 2px solid white;
+  box-shadow: 0 0 0 2px hsl(0deg 0% 90%);
+  color: white;
+  font-weight: 600;
+}
